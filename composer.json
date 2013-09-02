@@ -1,0 +1,20 @@
+{
+	"name": "fuel/webshop",
+	"type": "fuel-package",
+	"description": "Webshop package",
+	"keywords": [""],
+	"homepage": "http://fuelphp.com",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "AUTHOR",
+			"email": "AUTHOR@example.com"
+		}
+	],
+	"require": {
+		"composer/installers": "~1.0"
+	},
+	"extra": {
+		"installer-name": "webshop"
+	}
+}
