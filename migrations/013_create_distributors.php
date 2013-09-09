@@ -9,6 +9,7 @@ class Create_distributors
 	{
 		\DBUtil::create_table('distributors', array(
 			'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true, 'unsigned' => true),
+			'price_list_id' => array('constraint' => 11, 'type' => 'int', 'unsigned' => true),
 			'name' => array('constraint' => 128, 'type' => 'varchar'),
 			'slug' => array('constraint' => 128, 'type' => 'varchar'),
 			'url' => array('constraint' => 2083, 'type' => 'varchar'),

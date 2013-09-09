@@ -1,5 +1,6 @@
 <?php
 
 return array(
-	'tmp' => APPPATH . 'tmp/'
+	'tmp' => APPPATH . 'tmp/',
+	'save' => true
 );

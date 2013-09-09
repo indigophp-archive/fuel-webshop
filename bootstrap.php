@@ -28,4 +28,6 @@ Autoloader::add_classes(array(
 	'Webshop\\Model_Address' => __DIR__ . '/classes/model/address.php',
 	'Webshop\\Model_Manufacturer' => __DIR__ . '/classes/model/manufacturer.php',
 
+	'Webshop\\Model_Distributor' => __DIR__ . '/classes/model/distributor.php',
+
 ));

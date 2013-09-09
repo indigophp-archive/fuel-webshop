@@ -17,6 +17,18 @@ abstract class Distributor_Driver
 	protected $model;
 
 	/**
+	 * Request object
+	 * @var Request
+	 */
+	protected $request;
+
+	/**
+	 * Response object
+	 * @var Response
+	 */
+	protected $response;
+
+	/**
 	* Driver constructor
 	*
 	* @param array $config driver config
@@ -52,17 +64,34 @@ abstract class Distributor_Driver
 		return $this;
 	}
 
-	public function download()
+	public function download($file = 'price', $return = true)
 	{
-		$path = $this->get_config('tmp') . DS . $this->model->slug . DS;
+		$result = $this->_download($file);
 
-		if ( ! is_dir($path)) {
-			mkdir($path, 0755, true);
+		if ($result)
+		{
+			if ($this->get_config('save', true) === true)
+			{
+				$path = $this->get_config('tmp') . DS . $this->model->slug . DS;
+
+				if ( ! is_dir($path)) {
+					mkdir($path, 0755, true);
+				}
+				file_put_contents($path . $file, $result);
+			}
+			return $return === true ? $result : true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 
-	public function update()
+	public function update($cached = false)
 	{
-		# code...
+		$products = $this->_update($cached);
 	}
+
+	abstract public function download($file);
+	abstract protected function _update($cached = false);
 }

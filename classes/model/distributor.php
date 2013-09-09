@@ -16,6 +16,7 @@ class Model_Distributor extends \Orm\Model
 
 	protected static $_properties = array(
 		'id',
+		'price_list_id',
 		'name',
 		'slug',
 		'url',
