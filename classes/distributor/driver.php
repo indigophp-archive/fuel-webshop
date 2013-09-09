@@ -17,18 +17,6 @@ abstract class Distributor_Driver
 	protected $model;
 
 	/**
-	 * Request object
-	 * @var Request
-	 */
-	protected $request;
-
-	/**
-	 * Response object
-	 * @var Response
-	 */
-	protected $response;
-
-	/**
 	* Driver constructor
 	*
 	* @param array $config driver config
@@ -64,25 +52,36 @@ abstract class Distributor_Driver
 		return $this;
 	}
 
-	public function download($file = 'price', $return = true)
+	public function download($file = 'price', $cached = false)
 	{
+		if ($cached === true && $this->get_config('cache.enabled', true) === true)
+		{
+			try
+			{
+				//Log: Returning file from cache
+				return \Cache::get($this->get_config('cache.prefix', true) . $this->model->slug . $file);
+			}
+			catch (\CacheNotFoundException $e)
+			{
+				// Log: cached mode is selected, but the cache doesn't exist
+			}
+		}
+
 		$result = $this->_download($file);
 
 		if ($result)
 		{
-			if ($this->get_config('save', true) === true)
+			//Log: download successful
+			if ($this->get_config('cache.enabled', true) === true)
 			{
-				$path = $this->get_config('tmp') . DS . $this->model->slug . DS;
-
-				if ( ! is_dir($path)) {
-					mkdir($path, 0755, true);
-				}
-				file_put_contents($path . $file, $result);
+				$cache = \Cache::forge($this->get_config('cache.prefix', true) . $this->model->slug . $file, $this->get_config('cache'));
+				$cache->set($result, $this->get_config('config.expiration'));
 			}
-			return $return === true ? $result : true;
+			return $result;
 		}
 		else
 		{
+			//Log: download failed
 			return false;
 		}
 	}
@@ -92,6 +91,6 @@ abstract class Distributor_Driver
 		$products = $this->_update($cached);
 	}
 
-	abstract public function download($file);
+	abstract protected function _download($file);
 	abstract protected function _update($cached = false);
 }

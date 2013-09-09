@@ -1,6 +1,10 @@
 <?php
 
 return array(
-	'tmp' => APPPATH . 'tmp/',
-	'save' => true
+	'cache' => array(
+		'enabled'    => true,
+		'prefix'     => 'distributor'
+		'expiration' => 86400,
+		'driver'     => 'file',
+	)
 );
