@@ -2,7 +2,7 @@
 
 namespace Fuel\Migrations;
 
-class Create_order_meta_2
+class Create_order_meta
 {
 
 	public function up()

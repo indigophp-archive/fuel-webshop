@@ -14,7 +14,6 @@ class Create_order_histories
 			'notify' => array('constraint' => 1, 'type' => 'tinyint', 'default' => 1),
 			'comment' => array('type' => 'text'),
 			'created_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
-			'updated_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 			'deleted_at' => array('constraint' => 11, 'type' => 'int', 'null' => true),
 
 		), array('id'));

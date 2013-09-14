@@ -8,16 +8,21 @@ abstract class Distributor_Curl extends Distributor_Request
 	{
 		$options['driver'] = 'curl';
 		$return = parent::request($url, $options);
+
+		$user_field = empty($this->model->user_field) ? 'user' : $this->model->user_field;
+		$pass_field = empty($this->model->pass_field) ? 'pass' : $this->model->pass_field;
+
 		$this->request->add_param(array(
-			$this->model->user_field => $this->model->user,
-			$this->model->pass_field => $this->model->pass
+			$user_field => $this->model->user,
+			$pass_field => $this->model->pass
 		));
 
 		return $return;
 	}
 
-	protected function _download($file)
+	protected function _download($file = 'price')
 	{
-		return true;
+		$this->request($this->model->update);
+		return parent::_download($file);
 	}
 }

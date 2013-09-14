@@ -21,6 +21,7 @@ class Create_addresses
 			'city' => array('constraint' => 255, 'type' => 'varchar'),
 			'address_1' => array('constraint' => 255, 'type' => 'varchar'),
 			'address_2' => array('constraint' => 255, 'type' => 'varchar', 'null' => true),
+			'enabled' => array('constraint' => 1, 'type' => 'tinyint', 'default' => 1),
 
 		), array('id', 'temporal_start', 'temporal_end'));
 	}

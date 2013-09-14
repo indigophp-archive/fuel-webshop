@@ -17,7 +17,7 @@ class Model_Order_History extends \Orm\Model_Soft
 		'order_id',
 		'order_status_id',
 		'notify' => array(
-			'enabled' => 1
+			'default' => 1
 		),
 		'comment',
 		'created_at',

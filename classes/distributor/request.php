@@ -2,7 +2,7 @@
 
 namespace Webshop;
 
-abstract class Distributor_Request
+abstract class Distributor_Request extends Distributor_Driver
 {
 	/**
 	 * Request object
@@ -35,10 +35,11 @@ abstract class Distributor_Request
 		try
 		{
 			$this->response = $this->request->execute()->response();
-			return $this->reponse->status == 200 ? true : false;
-		} catch (Exception $e)
+			return $this->response->status == 200 ? true : false;
+		}
+		catch (\RequestException $e)
 		{
-			return false;
+			throw new DistributorException($e->getMessage());
 		}
 	}
 

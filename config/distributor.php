@@ -3,7 +3,7 @@
 return array(
 	'cache' => array(
 		'enabled'    => true,
-		'prefix'     => 'distributor'
+		'prefix'     => 'distributor',
 		'expiration' => 86400,
 		'driver'     => 'file',
 	)

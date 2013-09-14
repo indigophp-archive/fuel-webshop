@@ -25,6 +25,9 @@ class Model_Address extends \Orm\Model_Temporal
 		'city',
 		'address_1',
 		'address_2',
+		'enabled' => array(
+			'default' => 1
+		),
 	);
 
 	protected static $_table_name = 'addresses';

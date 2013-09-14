@@ -4,7 +4,6 @@ namespace Webshop;
 
 class Model_Order extends \Orm\Model_Soft
 {
-
 	protected static $_belongs_to = array(
 		'shipping_address' => array(
 			'key_from' => 'shipping_address_id',
@@ -61,15 +60,10 @@ class Model_Order extends \Orm\Model_Soft
 		'deleted_at',
 	);
 
-	protected static $_soft_delete = array(
-		'mysql_timestamp' => false,
-	);
-
 	protected static $_table_name = 'orders';
 
 	public function _event_after_load()
 	{
 
 	}
-
 }

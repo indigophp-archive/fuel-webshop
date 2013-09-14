@@ -24,8 +24,6 @@ class Model_Order_Product extends \Orm\Model_Soft
 		'quantity',
 		'price',
 		'subtotal',
-		'created_at',
-		'updated_at',
 		'deleted_at',
 	);
 
@@ -37,12 +35,13 @@ class Model_Order_Product extends \Orm\Model_Soft
 
 	public function _event_after_load()
 	{
-		$this->product = \Model_Product::find_revision($this->product_id, $this->order->created_at);
+		//$this->product = \Model_Product::find_revision($this->product_id, $this->order->created_at);
 	}
 
 	public static function _init()
 	{
-		//static::$_belongs_to['product']['conditions']['where'][] = array('temporal_start', '<=', \DB::expr(\DB::quote_identifier(\Model_Order::table() . '.created_at')));
+		static::$_belongs_to['product']['conditions']['where'][] = array('temporal_start', '<=', \DB::expr(\DB::quote_identifier('created_at')));
+		static::$_belongs_to['product']['conditions']['where'][] = array('temporal_end', '>', \DB::expr(\DB::quote_identifier('created_at')));
 	}
 
 }

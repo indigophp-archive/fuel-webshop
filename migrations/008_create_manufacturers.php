@@ -12,6 +12,7 @@ class Create_manufacturers
 			'name' => array('constraint' => 64, 'type' => 'varchar'),
 			'image' => array('constraint' => 2083, 'type' => 'varchar'),
 			'sort' => array('constraint' => 5, 'type' => 'int'),
+			'enabled' => array('constraint' => 1, 'type' => 'tinyint', 'default' => 1),
 
 		), array('id'));
 	}

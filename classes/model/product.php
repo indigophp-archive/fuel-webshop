@@ -19,12 +19,15 @@ class Model_Product extends \Orm\Model_Temporal
 	);
 
 	protected static $_has_many = array(
-		'meta' => array(
+		'meta'  => array(
 			'model_to'       => 'Model_Product_Meta',
-			'cascade_save'   => true,
 			'cascade_delete' => true,
 		),
-		'order_product'
+		'order_product',
+		'prices' => array(
+			'model_to'       => 'Model_Price',
+			'cascade_delete' => true,
+		),
 	);
 
 	protected static $_observers = array(
@@ -52,5 +55,4 @@ class Model_Product extends \Orm\Model_Temporal
 	);
 
 	protected static $_table_name = 'products';
-
 }

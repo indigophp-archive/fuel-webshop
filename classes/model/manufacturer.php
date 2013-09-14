@@ -14,6 +14,9 @@ class Model_Manufacturer extends \Orm\Model
 		'name',
 		'image',
 		'sort',
+		'enabled' => array(
+			'default' => 1
+		),
 	);
 
 	protected static $_table_name = 'manufacturers';

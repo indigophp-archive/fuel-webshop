@@ -11,8 +11,9 @@ abstract class Distributor_Soap extends Distributor_Request
 		return parent::request($url, $options);
 	}
 
-	protected function function($name, $params = array())
+	public function set_function($name, $params = array())
 	{
-		return $this->request->set_function($name)->add_param($params);
+		$this->request->set_function($name)->add_param($params);
+		return $this;
 	}
 }

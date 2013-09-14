@@ -32,14 +32,13 @@ class Distributor
 	{
 
 		$model = \Model_Distributor::query();
-
-		if (is_int($distributor)
+		if (is_int($distributor))
 		{
-			$model = $model->where('id', $distributor)->get();
+			$model = $model->where('id', $distributor)->get_one();
 		}
 		elseif (is_string($distributor))
 		{
-			$model = $model->where('slug', $distributor)->get();
+			$model = $model->where('slug', $distributor)->get_one();
 		}
 		elseif ($distributor instanceof Model_Distributor)
 		{
@@ -52,7 +51,7 @@ class Distributor
 
 		$config = \Arr::merge(static::$_defaults, \Config::get('distributor', array()), $config);
 
-		$driver = ucfirst(strtolower(isset($model->driver) ? $model->driver : $model->slug);
+		$driver = ucfirst(strtolower(isset($model->driver) ? $model->driver : $model->slug));
 
 		$class = '\Webshop\Distributor_' . $driver;
 
